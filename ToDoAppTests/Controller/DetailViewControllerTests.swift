@@ -75,8 +75,12 @@ final class DetailViewControllerTests: XCTestCase {
     }
     
     func testSettingTaskSetsDateLabel() {
+        let df = DateFormatter()
+        df.dateFormat = "dd.MM.yy"
+        df.date(from: "15.04.23")
+        
         setupTaskAndAppearanceTransition()
-        XCTAssertEqual(sut.dateLabel.text, Optional("15.04.23"))
+        XCTAssertEqual(sut.dateLabel.text, "15.04.23")
     }
     
     func testSettingTaskSetsMapView() {
