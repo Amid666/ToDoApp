@@ -13,6 +13,7 @@ final class TaskManagerTests: XCTestCase {
     var sut: TaskManager!
 
     override func setUpWithError() throws {
+        try super.setUpWithError()
        sut = TaskManager()
     }
 

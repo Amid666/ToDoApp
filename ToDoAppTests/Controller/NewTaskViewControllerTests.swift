@@ -13,13 +13,14 @@ final class NewTaskViewControllerTests: XCTestCase {
     
     var sut: NewTaskViewController!
     var placemark: MockCLPlacemark!
-
+    
     override func setUpWithError() throws {
+        try super.setUpWithError()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         sut = storyboard.instantiateViewController(withIdentifier: String(describing: NewTaskViewController.self)) as? NewTaskViewController
         sut.loadViewIfNeeded()
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -51,34 +52,34 @@ final class NewTaskViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.cancelButton.isDescendant(of: sut.view))
     }
     
-//    func testSaveUsesGeocoderToConvertCoordinateFromAddress() {
-//        let df = DateFormatter()
-//        df.dateFormat = "dd.MM.yy"
-//       let date = df.date(from: "15.04.23")
-//
-//        sut.titleTextField.text = "Foo"
-//        sut.locationTextField.text = "Bar"
-//        sut.dateTextField.text = "15.04.23"
-//        sut.addressTextField.text = "Киев"
-//        sut.descriptionTextField.text = "Baz"
-//
-//        sut.taskManager = TaskManager()
-//        let mockGeocoder = MockCLGeocoder()
-//        sut.geocoder = mockGeocoder
-//        sut.save()
-//
-//        let coordinate = CLLocationCoordinate2D(latitude: 50.42929, longitude: 30.53806)
-//        let location = Location(name: "Bar", coordinate: coordinate )
-//        let generatedTask = Task(title: "Foo", description: "Bar", date: date, location: location)
-//
-//        placemark = MockCLPlacemark()
-//        placemark.mockCoordinate = coordinate
-//        mockGeocoder.completionHandler?([placemark], nil)
-//
-//        let task = sut.taskManager.task(at: 0)
-//
-//        XCTAssertEqual(task, generatedTask)
-//    }
+    //    func testSaveUsesGeocoderToConvertCoordinateFromAddress() {
+    //        let df = DateFormatter()
+    //        df.dateFormat = "dd.MM.yy"
+    //       let date = df.date(from: "15.04.23")
+    //
+    //        sut.titleTextField.text = "Foo"
+    //        sut.locationTextField.text = "Bar"
+    //        sut.dateTextField.text = "15.04.23"
+    //        sut.addressTextField.text = "Киев"
+    //        sut.descriptionTextField.text = "Baz"
+    //
+    //        sut.taskManager = TaskManager()
+    //        let mockGeocoder = MockCLGeocoder()
+    //        sut.geocoder = mockGeocoder
+    //        sut.save()
+    //
+    //        let coordinate = CLLocationCoordinate2D(latitude: 50.42929, longitude: 30.53806)
+    //        let location = Location(name: "Bar", coordinate: coordinate )
+    //        let generatedTask = Task(title: "Foo", description: "Bar", date: date, location: location)
+    //
+    //        placemark = MockCLPlacemark()
+    //        placemark.mockCoordinate = coordinate
+    //        mockGeocoder.completionHandler?([placemark], nil)
+    //
+    //        let task = sut.taskManager.task(at: 0)
+    //
+    //        XCTAssertEqual(task, generatedTask)
+    //    }
     
     func testSaveButtonSaveMethod() {
         let saveButton = sut.saveButton
@@ -112,17 +113,39 @@ final class NewTaskViewControllerTests: XCTestCase {
         }
         waitForExpectations(timeout: 5, handler: nil)
     }
-}
-
-extension NewTaskViewControllerTests {
-    class MockCLGeocoder: CLGeocoder {
+    
+    func testSaveDismissesNewTaskViewController() {
+        let mockNewTaskViewController = MockNewTaskViewController()
+        mockNewTaskViewController.titleTextField = UITextField()
+        mockNewTaskViewController.titleTextField.text = "Foo"
+        mockNewTaskViewController.descriptionTextField = UITextField()
+        mockNewTaskViewController.titleTextField.text = "Bar"
+        mockNewTaskViewController.locationTextField = UITextField()
+        mockNewTaskViewController.titleTextField.text = "Baz"
+        mockNewTaskViewController.addressTextField = UITextField()
+        mockNewTaskViewController.titleTextField.text = "Киев"
+        mockNewTaskViewController.dateTextField = UITextField()
+        mockNewTaskViewController.titleTextField.text = "25.04.19"
         
-        var completionHandler: CLGeocodeCompletionHandler?
+        // when
+        mockNewTaskViewController.save()
         
-        override func geocodeAddressString(_ addressString: String, completionHandler: @escaping CLGeocodeCompletionHandler) {
-            self.completionHandler = completionHandler
+        // then
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            XCTAssertTrue(mockNewTaskViewController.isDismissed)
         }
     }
+}
+    extension NewTaskViewControllerTests {
+        class MockCLGeocoder: CLGeocoder {
+            
+            var completionHandler: CLGeocodeCompletionHandler?
+            
+            override func geocodeAddressString(_ addressString: String, completionHandler: @escaping CLGeocodeCompletionHandler) {
+                self.completionHandler = completionHandler
+            }
+        }
+    
     
     class MockCLPlacemark: CLPlacemark {
         
@@ -130,6 +153,17 @@ extension NewTaskViewControllerTests {
         
         override var location: CLLocation? {
             return CLLocation(latitude: mockCoordinate.latitude, longitude: mockCoordinate.longitude)
+        }
+    }
+}
+
+extension NewTaskViewControllerTests {
+    
+    class MockNewTaskViewController: NewTaskViewController {
+        var isDismissed = false
+        
+        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+            isDismissed = true
         }
     }
 }

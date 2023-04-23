@@ -30,6 +30,7 @@
 		308CE70329EAA39100DD524E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308CE70229EAA39100DD524E /* DetailViewController.swift */; };
 		30CFC20C29F3F14600FE8C2E /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CFC20B29F3F14600FE8C2E /* APIClientTests.swift */; };
 		30CFC20E29F3FA9B00FE8C2E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CFC20D29F3FA9B00FE8C2E /* APIClient.swift */; };
+		30CFC21129F42AEF00FE8C2E /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CFC21029F42AEF00FE8C2E /* String+extension.swift */; };
 		30ED086D29D9B526003EFF50 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30428A0B29D99CE800F92DB8 /* Task.swift */; };
 		30ED086F29D9B600003EFF50 /* LocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ED086E29D9B600003EFF50 /* LocationTest.swift */; };
 		30ED087329D9BE59003EFF50 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ED086B29D9AFDC003EFF50 /* Location.swift */; };
@@ -81,6 +82,7 @@
 		308CE70229EAA39100DD524E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		30CFC20B29F3F14600FE8C2E /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
 		30CFC20D29F3FA9B00FE8C2E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		30CFC21029F42AEF00FE8C2E /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		30ED086B29D9AFDC003EFF50 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		30ED086E29D9B600003EFF50 /* LocationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				304289E229D9999E00F92DB8 /* Info.plist */,
+				30CFC20F29F42AAC00FE8C2E /* Extension */,
 				30767D4D29DB6899004D1AEF /* Manager */,
 				30428A0629D999E300F92DB8 /* Controller */,
 				30428A0529D999CC00F92DB8 /* View */,
@@ -154,7 +157,7 @@
 		304289EA29D9999F00F92DB8 /* ToDoAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				304289EB29D9999F00F92DB8 /* ToDoAppTests.swift */,
+				30AE4C3429F5224100D22392 /* Suporting files */,
 				30137E8629E7445A00B9993A /* View */,
 				308AD96729E159A50050DB22 /* Controller */,
 				30767D4A29DB673E004D1AEF /* Manager */,
@@ -248,6 +251,22 @@
 				304D8E0D29EADCDD007A4C33 /* NewTaskViewControllerTests.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		30AE4C3429F5224100D22392 /* Suporting files */ = {
+			isa = PBXGroup;
+			children = (
+				304289EB29D9999F00F92DB8 /* ToDoAppTests.swift */,
+			);
+			path = "Suporting files";
+			sourceTree = "<group>";
+		};
+		30CFC20F29F42AAC00FE8C2E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				30CFC21029F42AEF00FE8C2E /* String+extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +408,7 @@
 				30CFC20E29F3FA9B00FE8C2E /* APIClient.swift in Sources */,
 				30844B2D29E2D14E00F5CBB5 /* TaskCell.swift in Sources */,
 				304D8E1029EADEA9007A4C33 /* NewTaskViewController.swift in Sources */,
+				30CFC21129F42AEF00FE8C2E /* String+extension.swift in Sources */,
 				30ED087329D9BE59003EFF50 /* Location.swift in Sources */,
 				30ED086D29D9B526003EFF50 /* Task.swift in Sources */,
 				304289D729D9999C00F92DB8 /* SceneDelegate.swift in Sources */,
